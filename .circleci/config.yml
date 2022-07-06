@@ -1,7 +1,7 @@
 jobs:
   build:
     docker:
-      - image: circleci/node:13.8.0
+      - image: circleci/node:16.15.0
     steps:
       - checkout
       - run: npm i
@@ -9,7 +9,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:13.8.0
+      - image: circleci/node:16.15.0
     steps:
       - checkout
       - run: npm i
@@ -17,7 +17,7 @@ jobs:
 
   analyze:
     docker:
-      - image: circleci/node:13.8.0
+      - image: circleci/node:16.15.0
     steps:
       - checkout
       - run: npm audit
