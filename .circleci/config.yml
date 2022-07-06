@@ -21,10 +21,6 @@ jobs:
     steps:
       - checkout
       - run: npm audit
-      - run:
-          name: on error
-          command: echo "Analyze failed!"
-          when: on_fail
 
 workflows:
   jobs:
