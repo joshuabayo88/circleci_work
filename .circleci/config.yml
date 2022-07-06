@@ -1,0 +1,37 @@
+jobs:
+  build:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run lint
+
+  test:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm i
+      - run: npm run test
+
+  analyze:
+    docker:
+      - image: circleci/node:13.8.0
+    steps:
+      - checkout
+      - run: npm audit
+      - run:
+          name: on error
+          command: echo "Analyze failed!"
+          when: on_fail
+
+workflows:
+  jobs:
+    - build
+    - test:
+        requires:
+          - build
+    - analyze:
+        requires:
+          - test
